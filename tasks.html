@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サポート - 目標管理アプリ</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #007AFF;
+            border-bottom: 3px solid #007AFF;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007AFF;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .app-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #007AFF;
+        }
+        .faq-item {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .faq-question {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            font-weight: bold;
+            color: #495057;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .faq-answer {
+            padding: 15px 20px;
+        }
+        .contact-info {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        .tip {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #17a2b8;
+            margin: 15px 0;
+        }
+        .steps {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .steps ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 8px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .version-info {
+            color: #666;
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="app-info">
+            <h1>📱 目標管理アプリ サポート</h1>
+            <p>あなたの目標達成をサポートする年齢・目標管理アプリです</p>
+        </div>
+
+        <h2>🎯 アプリについて</h2>
+        <p>目標管理アプリは、生年月日から現在の年齢と次の誕生日までの日数を計算し、年齢ごとの目標設定と日々のタスク管理ができるアプリです。シンプルで使いやすいデザインで、あなたの人生設計をサポートします。</p>
+
+        <h2>✨ 主な機能</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🎂 年齢計算</h3>
+                <p>生年月日から現在の年齢と、次の年齢になるまでの残り日数を自動計算します。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 長期目標</h3>
+                <p>次の年齢までに達成したい目標を設定し、長期的な計画を立てることができます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>📝 日々のタスク</h3>
+                <p>日付別にタスクを管理し、毎日の目標を設定・達成状況を追跡できます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>📅 カレンダー機能</h3>
+                <p>過去や未来の日付にもタスクを設定でき、計画的な管理が可能です。</p>
+            </div>
+        </div>
+
+        <h2>❓ よくある質問（FAQ）</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">データは安全に保存されますか？</div>
+            <div class="faq-answer">
+                はい、すべてのデータ（生年月日、目標、タスク）はお客様のデバイス内にのみ保存され、外部サーバーには送信されません。プライバシーは完全に保護されています。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">アプリを削除したらデータはどうなりますか？</div>
+            <div class="faq-answer">
+                アプリをアンインストールすると、保存されたすべてのデータ（生年月日、目標、タスク）が完全に削除されます。復元はできませんのでご注意ください。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">生年月日を変更したい場合は？</div>
+            <div class="faq-answer">
+                右上の「設定」ボタンをタップし、「年齢設定を変更」を選択することで、生年月日を再設定できます。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">タスクを削除するには？</div>
+            <div class="faq-answer">
+                各タスクの右側にあるゴミ箱アイコンをタップすることで、タスクを削除できます。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">広告を非表示にできますか？</div>
+            <div class="faq-answer">
+                現在、広告非表示機能は提供していません。広告はアプリの無料提供を支援するために表示されています。
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">過去の日付にタスクを追加できますか？</div>
+            <div class="faq-answer">
+                はい、日付の左右矢印ボタンや日付部分をタップしてカレンダーから、任意の日付を選択してタスクを追加できます。
+            </div>
+        </div>
+
+        <h2>🔧 トラブルシューティング</h2>
+
+        <h3>アプリが起動しない場合</h3>
+        <div class="steps">
+            <ol>
+                <li>デバイスを再起動してください</li>
+                <li>App Storeから最新版にアップデートしてください</li>
+                <li>十分な空き容量があることを確認してください</li>
+                <li>iOS版本が対応しているか確認してください</li>
+            </ol>
+        </div>
+
+        <h3>データが表示されない場合</h3>
+        <div class="steps">
+            <ol>
+                <li>アプリを完全に終了し、再起動してください</li>
+                <li>デバイスの空き容量を確認してください</li>
+                <li>iOS設定でアプリの権限を確認してください</li>
+            </ol>
+        </div>
+
+        <h3>広告が表示されない場合</h3>
+        <div class="warning">
+            <strong>注意：</strong>広告の表示はネットワーク状況や地域によって異なります。これはアプリの不具合ではありません。
+        </div>
+
+        <h3>キーボードが隠れない場合</h3>
+        <div class="tip">
+            <strong>ヒント：</strong>テキスト入力エリア以外の場所をタップすると、キーボードが自動的に隠れます。
+        </div>
+
+        <h2>🆘 その他のサポート</h2>
+        <p>上記で解決しない問題や、機能要望、不具合報告がございましたら、以下までお気軽にご連絡ください。24時間以内にご返信いたします。</p>
+
+        <div class="contact-info">
+            <h3>📧 お問い合わせ先</h3>
+            <p><strong>開発者：</strong> MOTOKI FUJIWARA<br>
+            <strong>メールアドレス：</strong> <a href="mailto:lexilien02@gmail.com">lexilien02@gmail.com</a></p>
+            
+            <h4>お問い合わせの際は以下の情報をお教えください：</h4>
+            <ul>
+                <li>iOSのバージョン</li>
+                <li>デバイスの機種</li>
+                <li>問題の詳細な状況</li>
+                <li>エラーメッセージ（ある場合）</li>
+            </ul>
+        </div>
+
+        <h2>📋 関連リンク</h2>
+        <ul>
+            <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+            <li><a href="https://apps.apple.com/jp/app/">App Store ページ</a></li>
+        </ul>
+
+        <div class="tip">
+            <strong>フィードバック歓迎：</strong>アプリの改善のため、App Storeでのレビューやご意見をお待ちしています。ポジティブなフィードバックは開発の励みになります！
+        </div>
+
+        <div class="version-info">
+            目標管理アプリ サポートページ<br>
+            最終更新日：2025年6月3日
+        </div>
+    </div>
+</body>
+</html>
