@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>国当てゲーム</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    #question { padding: 10px; font-size: 1.2em; }
+    #score { padding: 10px; }
+    #map { width: 100%; height: 80vh; }
+  </style>
+</head>
+<body>
+  <div id="question">次の国をクリックしてください: <strong><span id="countryName"></span></strong></div>
+  <div id="score">正解: <span id="correct">0</span> / <span id="total">0</span></div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // 地図初期化
+    const map = L.map('map').setView([20, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // 国境データのURL（GeoJSON）
+    const geoJsonUrl = 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json';
+    let countries = [];
+    let currentCountry = null;
+    const score = { correct: 0, total: 0 };
+
+    // 次の問題を出題
+    function nextQuestion() {
+      if (countries.length === 0) return;
+      const idx = Math.floor(Math.random() * countries.length);
+      currentCountry = countries[idx].properties;
+      document.getElementById('countryName').textContent = currentCountry.name;
+    }
+
+    // 各国をクリックしたときの処理
+    function onEachFeature(feature, layer) {
+      layer.on('click', () => {
+        score.total++;
+        document.getElementById('total').textContent = score.total;
+        if (feature.properties.name === currentCountry.name) {
+          score.correct++;
+          document.getElementById('correct').textContent = score.correct;
+          alert('正解！');
+        } else {
+          alert('不正解… それは ' + feature.properties.name + ' です');
+        }
+        nextQuestion();
+      });
+    }
+
+    // GeoJSONを取得して地図に描画
+    fetch(geoJsonUrl)
+      .then(response => response.json())
+      .then(data => {
+        countries = data.features;
+        L.geoJSON(data, { onEachFeature: onEachFeature }).addTo(map);
+        nextQuestion();
+      })
+      .catch(err => console.error('GeoJSON読み込みエラー:', err));
+  </script>
+</body>
+</html>
