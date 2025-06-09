@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高校名から都道府県を当てるゲーム</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { font-family: sans-serif; text-align: center; }
+    #question { font-size: 1.5em; margin: 1em; }
+    #map { width: 90vw; max-width: 800px; height: 60vh; margin: auto; }
+    #result { margin: 1em; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <div id="question">読み込み中…</div>
+  <div id="map"></div>
+  <div id="result"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // 1. 地図の初期化
+    const map = L.map('map').setView([37.5, 137.5], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let prefecturesLayer;
+    let highSchools = [];     // 高校データ一覧
+    let currentQuestion = null;
+
+    // 2. GeoJSON（都道府県境界）を読み込み
+    fetch('https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson')
+      .then(res => res.json())
+      .then(geojson => {
+        prefecturesLayer = L.geoJSON(geojson, {
+          style: () => ({ color: '#555', weight: 1, fillColor: '#ccc', fillOpacity: 0.5 }),
+          onEachFeature: (feature, layer) => {
+            layer.on('click', onPrefectureClick);
+          }
+        }).addTo(map);
+        loadHighSchools();
+      })
+      .catch(err => {
+        document.getElementById('question').textContent = '都道府県データの読み込みに失敗しました';
+        console.error(err);
+      });
+
+    // 3. 高校名と都道府県の対応を定義（必要に応じて追加・編集してください）
+    function loadHighSchools() {
+      highSchools = [
+        { name: '開成高等学校', prefecture: '東京都' },
+        { name: '灘高等学校', prefecture: '兵庫県' },
+        { name: '洛南高等学校', prefecture: '京都府' },
+        { name: '筑波大学附属駒場高等学校', prefecture: '東京都' },
+        { name: '札幌南高等学校', prefecture: '北海道' },
+        { name: '小松市立高等学校', prefecture: '石川県' },
+        { name: '福岡高等学校', prefecture: '福岡県' },
+        { name: '長崎東高等学校', prefecture: '長崎県' },
+        { name: '岡山白陵高等学校', prefecture: '岡山県' },
+        { name: '沖縄尚学高等学校', prefecture: '沖縄県' }
+        // …追加したいだけ増やせます
+      ];
+      nextQuestion();
+    }
+
+    // 4. 次の問題を表示
+    function nextQuestion() {
+      currentQuestion = highSchools[Math.floor(Math.random() * highSchools.length)];
+      document.getElementById('question').textContent = `次の高校はどの都道府県？\n「${currentQuestion.name}」`;
+      document.getElementById('result').textContent = '';
+      resetMapStyle();
+    }
+
+    // 5. クリックした都道府県をチェック
+    function onPrefectureClick(e) {
+      const selectedName = e.target.feature.properties.N03_007; // GeoJSONのプロパティ名に合わせて調整
+      if (!currentQuestion) return;
+
+      if (selectedName === currentQuestion.prefecture) {
+        e.target.setStyle({ fillColor: 'green' });
+        document.getElementById('result').textContent = `🎉 正解！「${currentQuestion.prefecture}」です。`;
+      } else {
+        e.target.setStyle({ fillColor: 'red' });
+        document.getElementById('result').textContent = `✖️ 不正解… あなた: ${selectedName} ／ 正解: ${currentQuestion.prefecture}`;
+      }
+      // 約2秒後に次の問題へ
+      setTimeout(nextQuestion, 2000);
+    }
+
+    // 6. マップの色をリセット
+    function resetMapStyle() {
+      prefecturesLayer.eachLayer(layer => {
+        prefecturesLayer.resetStyle(layer);
+      });
+    }
+  </script>
+</body>
+</html>
